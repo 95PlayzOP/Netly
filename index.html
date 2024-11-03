@@ -189,8 +189,8 @@
     <div class="nav-links">
         <a href="#" class="nav-link">About</a>
         <a href="#" class="nav-link">Help</a>
-        <a href="#" class="nav-link log-in-button" onclick="login()">Log in</a> <!-- Updated -->
-        <a href="#" class="sign-in-button" onclick="signIn()">Sign in</a> <!-- Updated -->
+        <a href="#" class="nav-link log-in-button" onclick="login()">Log in</a>
+        <a href="#" class="sign-in-button" onclick="signIn()">Sign in</a>
     </div>
 
     <!-- Sidebar menu for About and Help on mobile -->
@@ -222,11 +222,15 @@
         }
 
         function signIn() {
-            gapi.auth2.getAuthInstance().signIn().then(onSignIn);
+            gapi.auth2.getAuthInstance().signIn().then(onSignIn).catch(function(error) {
+                console.error('Sign-in error:', error);
+            });
         }
 
         function login() {
-            gapi.auth2.getAuthInstance().signIn().then(onSignIn);
+            gapi.auth2.getAuthInstance().signIn().then(onSignIn).catch(function(error) {
+                console.error('Login error:', error);
+            });
         }
 
         // Load the Google API client library
@@ -242,4 +246,4 @@
 
     <script async defer src="https://apis.google.com/js/platform.js?onload=initGoogleAuth"></script>
 </body>
-</html>
+    </html>
