@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <style>
+        /* Base styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #1E1E1E;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Center container for big logo and tagline */
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-big {
+            width: 200px;
+            height: auto;
+        }
+
+        .tagline {
+            font-weight: 600;
+            font-size: 76.8px;
+            line-height: 93px;
+            max-width: 1065px;
+            text-align: center;
+        }
+
+        /* Small logo styling */
+        .logo-small {
+            width: 158.93px;
+            height: 71px;
+        }
+
+        /* Sign-in button */
+        .sign-in-button {
+            font-weight: 500;
+            font-size: 22px;
+            padding: 10px 20px;
+            background: #FFFFFF;
+            color: #1E1E1E;
+            border-radius: 9px;
+            text-decoration: none;
+        }
+
+        /* Login button */
+        .log-in-button {
+            font-weight: 500;
+            font-size: 22px;
+            padding: 10px 20px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 9px;
+            text-decoration: none;
+            display: none;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            top: 33px;
+            right: 50px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        /* Hamburger Menu for About and Help (visible on mobile only) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 28px;
+            color: #FFFFFF;
+            margin-right: 10px;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            padding-top: 60px;
+            z-index: 100;
+            color: white;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #FFFFFF;
+            display: block;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .logo-small {
+                width: 100px;
+                height: auto;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 33px;
+                right: 20px;
+                display: flex;
+                gap: 10px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .sign-in-button {
+                display: inline;
+            }
+
+            .log-in-button {
+                display: inline;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .nav-link {
+                display: inline;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for hamburger and small logo -->
+    <div class="logo-container">
+        <div class="hamburger" onclick="toggleSidebar()">☰</div>
+        <img src="netly_logo_small.png" alt="Netly Logo Small" class="logo-small">
+    </div>
+
+    <!-- Center container for big logo and tagline -->
+    <div class="center-content">
+        <img src="netly_logo_large.png" alt="Netly Logo Big" class="logo-big">
+        <div class="tagline">Make Yours In This Era Of AI!</div>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <div class="nav-links">
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Help</a>
+        <a href="http://localhost:7700/afterlogin.html" class="nav-link log-in-button" onclick="login()">Log in</a>
+        <a href="http://localhost:7700/afterlogin.html" class="sign-in-button" onclick="signIn()">Sign in</a>
+    </div>
+
+    <!-- Sidebar menu for About and Help on mobile -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" onclick="closeSidebar()">× Close</a>
+        <a href="#" class="nav-link" onclick="closeSidebar()">About</a>
+        <a href="#" class="nav-link" onclick="closeSidebar()">Help</a>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.display = (sidebar.style.display === "block") ? "none" : "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.display = "none";
+        }
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            
+            // Redirect to afterlogin.html after sign-in
+            window.location.href = "http://localhost:7700/afterlogin.html";
+        }
+
+        function signIn() {
+            gapi.auth2.getAuthInstance().signIn().then(onSignIn);
+        }
+
+        function login() {
+            gapi.auth2.getAuthInstance().signIn().then(onSignIn);
+        }
+
+        // Load the Google API client library
+        function initGoogleAuth() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '528880328696-15825k61f6aknp1uqkhnus7fqig6flsq.apps.googleusercontent.com', // Replace with your actual client ID
+                    scope: 'profile email'
+                });
+            });
+        }
+    </script>
+
+    <script async defer src="https://apis.google.com/js/platform.js?onload=initGoogleAuth"></script>
+</body>
+</html>
