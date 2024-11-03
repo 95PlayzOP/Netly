@@ -218,18 +218,20 @@
             console.log('Email: ' + profile.getEmail());
             
             // Redirect to afterlogin.html after sign-in
-            window.location.href = "https://netly-kohl.vercel.app/afterlogin.html"; // Update to your Vercel URL
+            window.location.href = "https://netly-kohl.vercel.app/afterlogin.html"; // Update this URL as needed
         }
 
         function signIn() {
             gapi.auth2.getAuthInstance().signIn().then(onSignIn).catch(function(error) {
                 console.error('Sign-in error:', error);
+                alert('Sign-in failed: ' + error.error); // Alert the user with error details
             });
         }
 
         function login() {
             gapi.auth2.getAuthInstance().signIn().then(onSignIn).catch(function(error) {
                 console.error('Login error:', error);
+                alert('Login failed: ' + error.error); // Alert the user with error details
             });
         }
 
