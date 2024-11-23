@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Tiny5&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="left-section">
+            <div class="hamburger" onclick="toggleSidebar()">☰</div>
+            <img src="/images/netly_logo_small.png" alt="Netly Logo Small" class="logo-small">
+        </div>
+
+        <div class="right-section">
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Help</a>
+            <a href="javascript:void(0);" class="login-button" id="loginButton" onclick="showEmailPopup()">Login</a>
+            <a href="javascript:void(0);" class="sign-up-button" id="signUpButton" onclick="showEmailPopup()">Sign up</a>
+            <span id="emailInitial" class="email-initial"></span>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <img src="/images/netly_logo_large.png" alt="Netly Logo Big" class="logo-big">
+        <div class="tagline">Make Yours In This Era Of AI!</div>
+    </section>
+
+    <section class="content-section">
+        <div class="paragraph-container">
+            <div class="paragraph-text">
+                <h2>Unleash Your Team's Creativity with Netly</h2>
+                <p class= "ps">Netly is the ultimate collaborative mind-mapping platform, built to transform how teams connect, brainstorm, and solve problems. With our intuitive, visual workspace, you can bring all your ideas together in one place, seeing connections more clearly than ever. Whether you're planning a project, building out a concept, or organizing information, Netly makes it easy for everyone to contribute and build on each other's ideas, creating a dynamic flow of creativity and insight.</p>
+            </div>
+            <img src="/images/illustration1.svg" alt="Creativity Illustration" class="illustration">
+        </div>
+
+        <div class="paragraph-container">
+            <div class="paragraph-text">
+                <h2>Real-Time Collaboration, Anytime, Anywhere</h2>
+                <p class="ps">Experience the power of true real-time collaboration with Netly. Our platform lets you and your team work together effortlessly, with live updates that make every change visible as it happens. No matter where you are, Netly ensures seamless teamwork, helping you stay in sync and move projects forward faster. With a user-friendly design, advanced features like customizable tags, and secure Google OAuth login, Netly is built for teams who want to think big and stay connected in a powerful, visual environment.</p>
+            </div>
+            <img src="/images/illustration2.svg" alt="Collaboration Illustration" class="illustration">
+        </div>
+    </section>
+
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" onclick="closeSidebar()">× Close</a>
+        <a href="#" onclick="closeSidebar()">About</a>
+        <a href="#" onclick="closeSidebar()">Help</a>
+    </div>
+
+
+<div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="emailPopup">
+    <h3>Enter Your Email</h3>
+    <input type="email" id="emailInput" placeholder="example@email.com" required>
+    <div class="button-container">
+        <button class="popup-button submit-button" onclick="login()">Submit</button>
+        <button class="popup-button cancel-button" onclick="closeEmailPopup()">Cancel</button>
+    </div>
+    <!-- Divider with text -->
+    <div class="divider-container">
+        <div class="divider-line"></div>
+        <p class="divider-text">Or login with</p>
+    </div>
+    <!-- Google login button -->
+<!-- Include Google Platform Library -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- Google Sign-In Button -->
+<div id="g_id_onload"
+     data-client_id="1063504037016-n1eb54cn9kbu6ogostjkssut32f1gq47.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="image-button-container">
+    <div id="buttonDiv" class="rendered-google-login"></div>
+</div>
+ <!--- <div class="custom-google-login">
+    <img src="/images/google_icon.svg" alt="google svg">
+  </div>-->
+</div>
+   
+    
+</body>
+</html>
